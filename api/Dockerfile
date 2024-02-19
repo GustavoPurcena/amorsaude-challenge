@@ -1,17 +1,30 @@
-FROM node:20
+FROM node:20 AS development
 
 WORKDIR /amorsaude/src/app
 
 COPY package*.json ./
 
 RUN npm install
-# If you are building your code for production
-# RUN npm ci --only=production
 
-# Bundle app source
+# bundle app sources
 COPY . .
 
 RUN npm run build
 
-EXPOSE 8080
-CMD [ "node", "dist/main" ]
+EXPOSE 3000
+
+## PRODUCTION ##
+FROM node:20 AS production
+
+ARG NODE_ENV=production
+ENV NODE_ENV=${NODE_ENV}
+
+# Set work dir
+WORKDIR /amorsaude/src/app
+
+COPY --from=development /amorsaude/src/app .
+
+EXPOSE 3000
+
+# run app
+CMD [ "node", "dist/main"]
