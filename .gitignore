@@ -1,0 +1,22 @@
+# compiled output
+api/dist
+api/node_modules
+api/build
+
+# Logs
+api/logs
+api/*.log
+api/npm-debug.log*
+api/pnpm-debug.log*
+api/yarn-debug.log*
+api/yarn-error.log*
+api/lerna-debug.log*
+
+
+# IDE - VSCode
+.vscode/*
+
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
