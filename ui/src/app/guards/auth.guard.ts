@@ -6,14 +6,14 @@ import {
   RouterStateSnapshot,
   UrlTree,
 } from '@angular/router';
-import { JwtHelperService } from '@auth0/angular-jwt';
 import { Observable } from 'rxjs';
+import { JwtService } from '../services/jwt.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthGuard implements CanActivate {
-  constructor(private router: Router, private jwtService: JwtHelperService) {}
+  constructor(private router: Router, private jwtService: JwtService) {}
 
   canActivate(
     route: ActivatedRouteSnapshot,
@@ -24,7 +24,7 @@ export class AuthGuard implements CanActivate {
     | boolean
     | UrlTree {
     if (this.jwtService.isTokenExpired()) {
-      this.router.navigate(['']);
+      this.router.navigate(['auth']);
       return false;
     } else {
       return true;

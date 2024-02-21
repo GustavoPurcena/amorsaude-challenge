@@ -1,11 +1,11 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { JwtHelperService } from '@auth0/angular-jwt';
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { LoginResponseI } from 'src/app/models/login-response.interface';
 import { UserI } from 'src/app/models/user.interface';
+import { JwtService } from 'src/app/services/jwt.service';
 
 @Injectable({
   providedIn: 'root',
@@ -14,7 +14,7 @@ export class AuthService {
   constructor(
     private http: HttpClient,
     private snackbar: MatSnackBar,
-    private jwtService: JwtHelperService
+    private jwtService: JwtService
   ) {}
 
   login(user: UserI): Observable<LoginResponseI> {
@@ -33,7 +33,9 @@ export class AuthService {
   }
 
   getLoggedInUser() {
-    const decodedToken = this.jwtService.decodeToken();
+    const decodedToken = this.jwtService.decodeToken(
+      this.jwtService.getToken() ?? ''
+    );
     return decodedToken.user;
   }
 }
