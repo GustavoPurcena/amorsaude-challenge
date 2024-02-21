@@ -1,16 +1,16 @@
 # compiled output
-api/dist
-api/node_modules
-api/build
+/api/dist
+/api/node_modules
+/api/build
 
 # Logs
-api/logs
-api/*.log
-api/npm-debug.log*
-api/pnpm-debug.log*
-api/yarn-debug.log*
-api/yarn-error.log*
-api/lerna-debug.log*
+/api/logs
+/api/*.log
+/api/npm-debug.log*
+/api/pnpm-debug.log*
+/api/yarn-debug.log*
+/api/yarn-error.log*
+/api/lerna-debug.log*
 
 
 # IDE - VSCode
@@ -20,3 +20,16 @@ api/lerna-debug.log*
 !.vscode/tasks.json
 !.vscode/launch.json
 !.vscode/extensions.json
+
+# See http://help.github.com/ignore-files/ for more about ignoring files.
+
+# Compiled output
+/ui/dist
+/ui/tmp
+/ui/out-tsc
+/ui/bazel-out
+
+# Node
+/ui/node_modules
+/ui/npm-debug.log
+/ui/yarn-error.log
