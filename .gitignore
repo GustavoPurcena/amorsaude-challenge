@@ -35,3 +35,4 @@
 /ui/yarn-error.log
 
 /ui/.angular/*
+/ui/.angular/cache/*
