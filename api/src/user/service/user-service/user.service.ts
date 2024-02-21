@@ -65,7 +65,7 @@ export class UserService {
 				}
 			} else {
 				throw new HttpException(
-					'Login was not successfull, wrong credentials',
+					'Login was not successfull, wrong email',
 					HttpStatus.UNAUTHORIZED,
 				);
 			}
@@ -88,7 +88,10 @@ export class UserService {
 
 	// also returns the password
 	private async findByEmail(email: string): Promise<UserI> {
-		return this.userRepository.findOne({ where: { email } });
+		return this.userRepository.findOne({
+			where: { email },
+			select: ['id', 'email', 'password'],
+		});
 	}
 
 	private async hashPassword(password: string): Promise<string> {
