@@ -14,7 +14,7 @@
 
 
 # IDE - VSCode
-.vscode/*
+*/.vscode/*
 
 !.vscode/settings.json
 !.vscode/tasks.json
@@ -33,3 +33,5 @@
 /ui/node_modules
 /ui/npm-debug.log
 /ui/yarn-error.log
+
+/ui/.angular/*
