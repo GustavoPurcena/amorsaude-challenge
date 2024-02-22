@@ -3,7 +3,6 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { tap } from 'rxjs/operators';
 import { UserService } from '../../services/user-service/user-service.service';
-import { PasswordValidators } from '../../validators/password-validators';
 
 @Component({
   selector: 'app-register',
@@ -11,15 +10,11 @@ import { PasswordValidators } from '../../validators/password-validators';
   styleUrls: ['./register.component.scss'],
 })
 export class RegisterComponent {
-  form: FormGroup = new FormGroup(
-    {
-      email: new FormControl(null, [Validators.required, Validators.email]),
-      username: new FormControl(null, [Validators.required]),
-      password: new FormControl(null, [Validators.required]),
-      passwordConfirm: new FormControl(null, [Validators.required]),
-    },
-    { validators: PasswordValidators.passwordsMatching }
-  );
+  form: FormGroup = new FormGroup({
+    email: new FormControl(null, [Validators.required, Validators.email]),
+    username: new FormControl(null, [Validators.required]),
+    password: new FormControl(null, [Validators.required]),
+  });
 
   constructor(private userService: UserService, private router: Router) {}
 
@@ -46,9 +41,5 @@ export class RegisterComponent {
 
   get password(): FormControl {
     return this.form.get('password') as FormControl;
-  }
-
-  get passwordConfirm(): FormControl {
-    return this.form.get('passwordConfirm') as FormControl;
   }
 }

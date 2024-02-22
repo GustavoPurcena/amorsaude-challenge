@@ -5,7 +5,7 @@ WORKDIR /amorsaude/ui/src/app
 
 COPY package*.json ./
 
-RUN npm install --legacy-peer-deps
+RUN npm install
 RUN npm install -g @angular/cli@13.3.11
 
 COPY . .
