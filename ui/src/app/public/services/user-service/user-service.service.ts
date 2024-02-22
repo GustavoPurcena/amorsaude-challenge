@@ -25,8 +25,7 @@ export class UserService {
           'Close',
           {
             duration: 2000,
-            horizontalPosition: 'right',
-            verticalPosition: 'top',
+            horizontalPosition: 'center',
           }
         )
       ),
@@ -36,8 +35,7 @@ export class UserService {
           'Close',
           {
             duration: 5000,
-            horizontalPosition: 'right',
-            verticalPosition: 'top',
+            horizontalPosition: 'center',
           }
         );
         return throwError(e);

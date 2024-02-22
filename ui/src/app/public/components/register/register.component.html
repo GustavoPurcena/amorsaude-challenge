@@ -1,60 +1,52 @@
-<div class="flex mx-auto justify-center m-8 min-w-24">
+<div class="flex mx-auto justify-center items-center m-8 min-w-24 h-5/6">
 
-    <div>
-        <div class="mb-5">
-            <a [routerLink]="['../login']">Go to Login</a>
-        </div>
+    <mat-card>
+        <h1 class="text-lg font-medium mb-4">Registrar</h1>
 
-        <div>
+        <mat-card-content>
+            <form [formGroup]="form" (ngSubmit)="register()">
+                <div class="flex flex-col justify-center space-y-1 w-full min-w-20 mb-2">
 
-            <mat-card>
-                <mat-card-title>Register</mat-card-title>
+                    <mat-error *ngIf="!form.valid">
+                        <small>
+                            Dados incorretos. Por favor, revise seus dados e tente novamente.
+                        </small>
+                    </mat-error>
 
-                <mat-card-content>
-                    <form [formGroup]="form" (ngSubmit)="register()">
-                        <div class="flex flex-col justify-center w-full min-w-20">
+                    <mat-form-field [floatLabel]="'never'" appearance="outline">
+                        <input type="text" matInput placeholder="Nome" formControlName="username">
+                        <mat-error *ngIf="username.hasError('required')">
+                            Digite um nome de usuário
+                        </mat-error>
+                    </mat-form-field>
 
-                            <mat-form-field>
-                                <input type="email" matInput placeholder="Email" formControlName="email">
-                                <mat-error *ngIf="email.touched && email.hasError('required')">Email is
-                                    required</mat-error>
-                                <mat-error *ngIf="email.touched && email.hasError('email')">Email must be
-                                    valid</mat-error>
-                            </mat-form-field>
+                    <mat-form-field [floatLabel]="'never'" appearance="outline">
+                        <input type="email" matInput placeholder="E-mail" formControlName="email">
+                        <mat-error *ngIf="email.hasError('required')">Por favor, digite o seu e-mail de
+                            cadastro!</mat-error>
+                        <mat-error *ngIf="email.hasError('email')">Digite um e-mail válido</mat-error>
+                    </mat-form-field>
 
-                            <mat-form-field>
-                                <input type="text" matInput placeholder="Username" formControlName="username">
-                                <mat-error *ngIf="username.touched && username.hasError('required')">
-                                    Username is required
-                                </mat-error>
-                            </mat-form-field>
+                    <mat-form-field [floatLabel]="'never'" appearance="outline">
+                        <input type="password" matInput placeholder="Senha" formControlName="password">
+                        <mat-error *ngIf="password.hasError('required')">
+                            Digite uma senha
+                        </mat-error>
+                    </mat-form-field>
 
-                            <mat-form-field>
-                                <input type="password" matInput placeholder="Password" formControlName="password">
-                                <mat-error *ngIf="password.touched && password.hasError('required')">
-                                    Password is required
-                                </mat-error>
-                            </mat-form-field>
+                </div>
+                <div class="flex justify-center">
+                    <button mat-flat-button class="w-full uppercase" type="submit" color="primary">Criar Conta</button>
+                </div>
 
-                            <mat-hint *ngIf="!form.valid">
-                                <small>
-                                    Please fill out all needed information
-                                </small>
-                            </mat-hint>
+                <div class="pt-4 flex justify-end text-xs">
+                    <span class="mr-1">Já tem uma conta?</span>
+                    <a class="underline hover:text-blue-600" [routerLink]="['../login']" mat-menu-item>Login</a>
+                </div>
 
-                        </div>
-                        <div class="flex justify-end">
-                            <button mat-button type="submit" [disabled]="!form.valid">Register</button>
-                        </div>
+            </form>
+        </mat-card-content>
 
-                    </form>
-                </mat-card-content>
-
-            </mat-card>
-
-        </div>
-
-
-    </div>
+    </mat-card>
 
 </div>

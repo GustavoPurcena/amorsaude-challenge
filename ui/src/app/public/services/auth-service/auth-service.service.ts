@@ -18,18 +18,13 @@ export class AuthService {
   ) {}
 
   login(user: UserI): Observable<LoginResponseI> {
-    return this.http.post<LoginResponseI>('api/users/login', user).pipe(
-      tap((res: LoginResponseI) =>
-        localStorage.setItem('amorsaude_token', res.access_token)
-      ),
-      tap(() =>
-        this.snackbar.open('Login Successfull', 'Close', {
-          duration: 2000,
-          horizontalPosition: 'right',
-          verticalPosition: 'top',
-        })
-      )
-    );
+    return this.http
+      .post<LoginResponseI>('api/users/login', user)
+      .pipe(
+        tap((res: LoginResponseI) =>
+          localStorage.setItem('amorsaude_token', res.access_token)
+        )
+      );
   }
 
   getLoggedInUser() {

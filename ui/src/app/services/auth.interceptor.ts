@@ -18,7 +18,6 @@ export class AuthInterceptor implements HttpInterceptor {
     request: HttpRequest<any>,
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
-    console.log('Intercepting request');
     // Get the token from JwtService
     const token = this.jwtService.getToken();
 

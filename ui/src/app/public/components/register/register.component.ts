@@ -11,14 +11,16 @@ import { UserService } from '../../services/user-service/user-service.service';
 })
 export class RegisterComponent {
   form: FormGroup = new FormGroup({
-    email: new FormControl(null, [Validators.required, Validators.email]),
-    username: new FormControl(null, [Validators.required]),
-    password: new FormControl(null, [Validators.required]),
+    email: new FormControl(null),
+    username: new FormControl(null),
+    password: new FormControl(null),
   });
 
   constructor(private userService: UserService, private router: Router) {}
 
   register() {
+    this.setValidators();
+    console.log(this.form);
     if (this.form.valid) {
       this.userService
         .create({
@@ -26,9 +28,18 @@ export class RegisterComponent {
           password: this.password.value,
           username: this.username.value,
         })
-        .pipe(tap(() => this.router.navigate(['../login'])))
+        .pipe(tap(() => this.router.navigate(['auth/login'])))
         .subscribe();
     }
+  }
+
+  setValidators() {
+    this.email.setValidators([Validators.required, Validators.email]);
+    this.email.updateValueAndValidity();
+    this.username.setValidators([Validators.required]);
+    this.username.updateValueAndValidity();
+    this.password.setValidators([Validators.required]);
+    this.password.updateValueAndValidity();
   }
 
   get email(): FormControl {
